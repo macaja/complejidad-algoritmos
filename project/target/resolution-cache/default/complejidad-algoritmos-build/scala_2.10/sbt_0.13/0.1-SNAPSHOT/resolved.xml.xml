@@ -4,7 +4,7 @@
 		module="complejidad-algoritmos-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20170731074720"
+		publication="20170731150933"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>

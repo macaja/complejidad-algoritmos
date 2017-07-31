@@ -16,14 +16,6 @@ class Conjunto[E](lista: List[E])(implicit universo: Universo[E]) extends Operac
   override def unary_~[List[E]]: Conjunto[E] = new Conjunto(universo.lista diff lista)
 }
 
-object Conjunto{
-  def apply[E](lista: List[E])(implicit universo: Universo[E]): Conjunto[E] = {
-    if(lista.isInstanceOf[List[Int]] && universo.lista.isInstanceOf[List[Int]]){
-      println(s"SON INSTANCIAS DE INT")
-      new Conjunto(lista)
-    }
-    else {
-      new Conjunto(Nil)
-    }
-  }
+object Conjunto {
+  def apply[E](lista: List[E])(implicit universo: Universo[E]): Conjunto[E] = new Conjunto[E](lista)
 }

@@ -1,20 +1,24 @@
 package example
 
-object Main extends App {
+object Main extends App{
   println("Operaciones básicas sobre conjuntos")
 
-  val A = new Conjunto[Int](lista = List(1,2,3,4,5))
+  implicit val universo = UniversoEnteros
 
-  val B = new Conjunto[Int](lista = List(1,2,3,4,5,6,7))
+  val A = Conjunto[Int](lista = List(1,2,3,4,5))
 
-  val sA = new Conjunto[String](lista = List("1","2","3","4","5"))
+  val B = Conjunto[Int](lista = List(1,2,3,4,5,6,7))
 
-  val sB = new Conjunto[String](lista = List("1","2","3","4","5","6","7"))
+/*  val sA = Conjunto[String](lista = List("1","2","3","4","5"))
 
-  println(A ∪ B)
-  println(sA ∪ sB)
+  val sB = Conjunto[String](lista = List("1","2","3","4","5","6","7"))*/
 
-  //println(A ~)
+  println(s"La union de los conjuntos es:${(A ∪ B).elementos}")
+  println(s"La intersección de los conjuntos es:${(A ∩ B).elementos}")
+  println(s"El complemento de A es:${(~A).elementos}")
+  println(s"De Morgan ~(A U B) => ${(~(A ∪ B)).elementos} es igual a ~A ∩ ~B => ${(~A ∩ ~B).elementos}")
+  println(((A ∪ B) ∩ (A ∩ B)).elementos)
 
+ // println(sA ∪ sB)
 }
 

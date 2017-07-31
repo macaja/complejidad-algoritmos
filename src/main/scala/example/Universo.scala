@@ -1,5 +1,5 @@
 package example
 
-object Universo {
-  val elementos = (1 to 50).toList
+class Universo[T](list: List[T]){
+  def getElements = this.list
 }

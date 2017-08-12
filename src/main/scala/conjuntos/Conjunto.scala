@@ -1,4 +1,4 @@
-package example
+package conjuntos
 
 trait Operaciones[T]{
   def ∪(conjunto: Conjunto[T]): Conjunto[T]

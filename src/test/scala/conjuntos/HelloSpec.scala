@@ -1,4 +1,4 @@
-package example
+package conjuntos
 
 import org.scalatest._
 

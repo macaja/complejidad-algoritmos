@@ -1,6 +1,6 @@
-package example
+package conjuntos
 
-object Main extends App{
+object MainOperacionesDeConjuntos extends App{
   println("Operaciones básicas sobre conjuntos")
 
   implicit val universo = UniversoEnteros
@@ -11,9 +11,9 @@ object Main extends App{
 
   val B = Conjunto[Int](lista = List(1,2,3,4,5,6,7))
 
-  val sA = Conjunto[String](lista = List("1","2","3","4","5"))
+  val sA = Conjunto[String](lista = List("2","3","4","5"))
 
-  val sB = Conjunto[String](lista = List("1","2","3","4","5","6","7"))
+  val sB = Conjunto[String](lista = List("1","2","4","5","6","7"))
 
   println(s"La union de los conjuntos es:${(A ∪ B).elementos}")
   println(s"La intersección de los conjuntos es:${(A ∩ B).elementos}")

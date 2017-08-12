@@ -1,4 +1,4 @@
-package example
+package conjuntos
 
 trait Universo[E]{
   def lista:List[E]

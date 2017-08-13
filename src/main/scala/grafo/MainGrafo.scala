@@ -1,18 +1,11 @@
 package grafo
 
-import scala.collection.mutable.ArrayBuffer
-import scala.io.Source
+case class Error(message: String = "ERROR POSSIBLY IS NOT AN INT")
 
 object MainGrafo extends App{
 
-  var mutable: ArrayBuffer[List[Int]] = ArrayBuffer.empty
-  val filename = "matriz.txt"
-  for (line <- Source.fromFile(filename).getLines) {
-    mutable.append(line.split(" ").map(_.toInt).toList)
-  }
+  val matriz: List[List[Int]] = Validaciones.fromTXT
 
-  println(mutable)
-
-  def validateLine(line: List[Int], dimension: Int): Boolean = line.size.equals(dimension)
+  println(matriz)
 
 }

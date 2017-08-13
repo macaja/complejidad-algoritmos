@@ -1,10 +1,10 @@
 package grafo
 
-case class Error(message: String = "ERROR POSSIBLY IS NOT AN INT")
+import grafo.Validaciones.Matriz
 
 object MainGrafo extends App{
 
-  val matriz: List[List[Int]] = Validaciones.fromTXT
+  val matriz: Either[String, Matriz] = Validaciones.fromTXT
 
   println(matriz)
 

@@ -18,6 +18,7 @@ object Validaciones {
       dms =>
         {
           dimension = dms
+          println(dimension)
           for ((line,index) <- src.getLines.zipWithIndex) {
             Try(
               line.split(" ").map(_.toInt).toList)
@@ -32,9 +33,10 @@ object Validaciones {
         }
     )
     src.close
-    mutable.exists(_.size.equals(dimension)) match {
-      case false => Left("FIN POR ERRORES")
-      case true => Right(mutable.toList)
+    if(mutable.size == dimension){
+      Right(mutable.toList)
+    }else{
+      Left("FIN POR ERRORES")
     }
   }
 
@@ -46,7 +48,7 @@ object Validaciones {
 
   private def validateDistanciaAUnMismoNodo(lista:List[Int], index: Int): Either[Error, List[Int]] = {
     lista(index).equals(0) match {
-      case false => Left(DistanciaHaciaElMismoNodoIncorrecta(mensaje = s"La distancia hacia el mismo nodo en la linea ${index} no es igual a 0"))
+      case false => Left(DistanciaHaciaElMismoNodoIncorrecta(mensaje = s"La distancia hacia el mismo nodo en la linea ${index+1} no es igual a 0"))
       case true => Right(lista)
     }
 

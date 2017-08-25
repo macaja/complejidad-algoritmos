@@ -1,11 +1,14 @@
 package grafo
 
+import grafo.Validaciones.Matriz
+
 import scala.io.Source
 
 object Loader {
 
-  def loadGraphFromFile(fileName: String): Graph = {
+  val abcdary = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray
 
+  def loadGraphFromFile(fileName: String): Graph = {
     val graph = new Graph()
     for (line <- Source.fromFile(fileName).getLines()) {
       val arr = line.trim.split(":")
@@ -20,6 +23,25 @@ object Loader {
               distancia = node(1).toInt)
           )
         }
+    }
+    graph
+  }
+
+  def buildGraph(matriz: Matriz): Graph = {
+    val graph = new Graph()
+    for (fila <-  matriz.indices){
+      graph.addVertice(Vertice(abcdary(fila).toString))
+      for (col <- matriz.indices) {
+        if (matriz(fila)(col) > 0){
+          graph.addArista(
+            Arista(
+              node1 = Vertice(abcdary(fila).toString),
+              node2 = Vertice(abcdary(col).toString),
+              distancia = matriz(fila)(col)
+            )
+          )
+        }
+      }
     }
     graph
   }

@@ -1,7 +1,7 @@
 package grafo
 
 import scala.collection.mutable.ArrayBuffer
-import scala.io.Source
+import scala.io.{Source, StdIn}
 import scala.util.Try
 
 object Validaciones {
@@ -13,12 +13,12 @@ object Validaciones {
     val src = Source.fromFile("matriz.txt")
     var dimension = 0
     println("Ingrese las dimensiones de la matriz")
-    Try(Console.readInt).fold(
+    Try(StdIn.readInt).fold(
       _ => println(ImposibleLeerDimensiones().mensaje),
       dms =>
         {
           dimension = dms
-          println(dimension)
+          //println(dimension)
           for ((line,index) <- src.getLines.zipWithIndex) {
             Try(
               line.split(" ").map(_.toInt).toList)

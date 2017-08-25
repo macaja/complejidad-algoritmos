@@ -4,6 +4,7 @@ trait Error{
   def mensaje: String
 }
 
+case class IngreseNodos(mensaje:String = "Ingrese Nodos para comparar su distancia") extends Error
 case class ImposibleLeerDimensiones(mensaje: String = "Imposible leer Dimensiones")
   extends Error
 case class ArchivoConValoresDiferentesAInt(mensaje: String = "El archivo tiene valores diferentes a Enteros")

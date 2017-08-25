@@ -18,7 +18,6 @@ object Validaciones {
       dms =>
         {
           dimension = dms
-          //println(dimension)
           for ((line,index) <- src.getLines.zipWithIndex) {
             Try(
               line.split(" ").map(_.toInt).toList)
@@ -39,6 +38,21 @@ object Validaciones {
       Left("FIN POR ERRORES")
     }
   }
+  def readNodesCompare(availableNodes:List[String]): (List[String], Boolean) = {
+    println("Ingrese 2 nodos para comparar su distancia.")
+    Try(StdIn.readLine).fold(
+      _ => {
+        println(IngreseNodos().mensaje)
+        (Nil,false)
+      },
+      nds => {
+        val input = nds.trim.split("\\s+").toList
+        (input.map(_.toUpperCase), input.size.equals(2) &&
+          availableNodes.contains(input.head.toUpperCase) &&
+          availableNodes.contains(input.tail.head.toUpperCase))
+      }
+    )
+  }
 
   private def validateLineDimension(lista: List[Int], dimension: Int): Either[Error,List[Int]] =
     lista.size.equals(dimension) match {
@@ -51,39 +65,5 @@ object Validaciones {
       case false => Left(DistanciaHaciaElMismoNodoIncorrecta(mensaje = s"La distancia hacia el mismo nodo en la linea ${index+1} no es igual a 0"))
       case true => Right(lista)
     }
-
   }
-
 }
-
-/*
-def fromTXT2: Either[String, Matriz] = {
-  var mutable: ArrayBuffer[List[Int]] = ArrayBuffer.empty
-  val src = Source.fromFile("matriz.txt")
-  var dimension = 0
-  println("Ingrese las dimensiones de la matriz")
-  Try(Console.readInt).fold(
-    _ => println("Imposible leer dimensiones"),
-    dms =>
-    {
-      dimension = dms
-      for ((line,index) <- src.getLines.zipWithIndex) {
-        for{
-          listaLeida <- Try(line.split(" ").map(_.toInt).toList)
-            .fold[Either[Error,List[Int]]](_ => Left(ArchivoConValoresDiferentesAInt()),Right(_))
-          validDimension <- validateLineDimension(listaLeida,dms)
-          validDistancia <- validateDistanciaAUnMismoNodo(validDimension,index)
-        }yield {
-          mutable.append(validDimension)
-          validDimension
-        }
-      }
-    }
-  )
-  src.close
-  mutable.exists(_.size.equals(dimension)) match {
-    case false => Left("FIN POR ERRORES")
-    case true => Right(mutable.toList)
-  }
-}*/
-

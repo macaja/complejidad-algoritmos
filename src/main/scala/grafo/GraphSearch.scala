@@ -1,27 +1,17 @@
 package grafo
 
-import grafo.Validaciones.Matriz
-
 import scala.collection.mutable.ArrayBuffer
 
 object GraphSearch {
-  def Load(fileName: String, nodo1:String, nodo2:String):String = {
-    val graph = Loader.loadGraphFromFile(fileName)
-    val nodos = preOrderDFS(graph, graph.vertices, List(Vertice(nodo1.toUpperCase)), Vertice(nodo2.toUpperCase))
-    getDistance(graph, nodos)
-  }
-  def LoadMatriz(matriz: Matriz, nodo1:String, nodo2:String):String = {
-    val graph = Loader.buildGraph(matriz)
-    val nodos = preOrderDFS(graph, graph.vertices, List(Vertice(nodo1.toUpperCase)), Vertice(nodo2.toUpperCase))
-    getDistance(graph, nodos)
-  }
 
+  def searchDistance(graph: Graph, nodo1:String, nodo2:String):String = {
+    val nodos = preOrderDFS(graph, graph.vertices, List(Vertice(nodo1.toUpperCase)), Vertice(nodo2.toUpperCase))
+    getDistance(graph, nodos)
+  }
 
   def preOrderDFS(g: Graph, noVisitados: Set[Vertice], verticesList: List[Vertice], vertice: Vertice): List[Vertice] ={
     verticesList match {
-    case List() => {
-      Nil
-    }
+    case List() => Nil
     case head :: tail => if(head == vertice) {
       head :: Nil
     }
